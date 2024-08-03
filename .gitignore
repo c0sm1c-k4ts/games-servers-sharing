@@ -91,4 +91,8 @@ typings/
 # Electron-Forge
 out/
 
+# IDE files
 /.idea
+
+# vite build folder
+/dist/
