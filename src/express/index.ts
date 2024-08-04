@@ -1,20 +1,41 @@
-import express from "express";
+import express, { Express } from "express";
 import path from "path";
+import { WebViewServerAddress } from "../utils/main-process/classes/WebViewServerAddress";
 
-export const setupExpress = () => {
-  const webViewServer = express();
-  // TODO: make dynamic
-  const port = 3001;
+export class WebViewServer {
+  public addressInfo: WebViewServerAddress | null = null;
 
- webViewServer.use(express.static(path.join(process.resourcesPath, `../../../dist/`)));
+  private expressInstance: Express | null;
+  private bundleFolder = path.join(process.resourcesPath, `../../../dist/`);
+  private bundledHtml = path.join(this.bundleFolder, "/index.html");
 
-  webViewServer.get('*', (req, res) => {
-    res.sendFile(path.join(process.resourcesPath, `../../../dist/index.html`));
-  })
+  static setup = () => {
+    const server = new WebViewServer();
 
-  webViewServer.listen(port, () => console.log(`Webview started at localhost:${port}`));
+    server.setServer();
+    server.serveStatic();
+    server.registerRoutes();
 
-  registerRoutes();
+    return server;
+  }
+
+  private setServer = () => {
+    this.expressInstance = express();
+  }
+
+  private serveStatic = () => {
+    this.expressInstance.use(express.static(this.bundleFolder));
+
+    this.expressInstance.get('*', (req, res) => {
+      res.sendFile(this.bundledHtml);
+    })
+
+    const serverInstance = this.expressInstance.listen(0, () => {
+      this.addressInfo = new WebViewServerAddress(serverInstance.address());
+
+      console.log(`Web View server running at: ${this.addressInfo}`);
+    });
+  }
+
+  private registerRoutes = (): null => null;
 }
-
-const registerRoutes = (): null => null;
