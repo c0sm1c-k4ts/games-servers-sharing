@@ -33,6 +33,20 @@
     "typescript": "~4.5.4",
     "vite": "^5.0.12"
   },
+  "author": {
+    "name": "c0sm1c-k4ts",
+    "email": "c0sm1ck4ts@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Fenrisulven",
+      "url": "https://github.com/FenrisuIven"
+    },
+    {
+      "name": "Gleb Andronchyk",
+      "url": "https://github.com/glebAndronchyk"
+    }
+  ],
   "keywords": [],
   "license": "MIT",
   "dependencies": {
