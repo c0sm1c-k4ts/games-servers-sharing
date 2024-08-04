@@ -26,12 +26,15 @@
  * ```
  */
 
-console.log('👋 This message is being logged by "renderer.ts", included via Vite');
+console.log(
+  '👋 This message is being logged by "renderer.ts", included via Vite',
+);
 
 window.electronAPI.getWebViewAddress((address: string) => {
-  const webViewAnchor = document.getElementById('port-info') as HTMLAnchorElement;
+  const webViewAnchor = document.getElementById(
+    "port-info",
+  ) as HTMLAnchorElement;
 
   webViewAnchor.href = address;
   webViewAnchor.innerText = `Web view server started at: ${address}`;
-})
-
+});

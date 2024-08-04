@@ -9,6 +9,9 @@ export class WebViewServer {
   private bundleFolder = path.join(process.resourcesPath, `/dist`);
   private bundledHtml = path.join(this.bundleFolder, "/index.html");
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  private constructor() {}
+
   static setup = () => {
     const server = new WebViewServer();
 
@@ -17,25 +20,27 @@ export class WebViewServer {
     server.registerRoutes();
 
     return server;
-  }
+  };
 
   private setServer = () => {
     this.expressInstance = express();
-  }
+  };
 
   private serveStatic = () => {
     this.expressInstance.use(express.static(this.bundleFolder));
 
-    this.expressInstance.get('*', (req, res) => {
+    this.expressInstance.get("*", (req, res) => {
       res.sendFile(this.bundledHtml);
-    })
+    });
 
     const serverInstance = this.expressInstance.listen(0, () => {
       this.addressInfo = new WebViewServerAddress(serverInstance.address());
 
-      console.log(`Web View server running at: ${this.addressInfo}`);
+      console.log(
+        `Web View server running at: ${this.addressInfo.getServerAddress()}`,
+      );
     });
-  }
+  };
 
   private registerRoutes = (): null => null;
 }
