@@ -1,7 +1,7 @@
 import { spawn } from "node:child_process";
 import { StdioOptions } from "child_process";
 import { ProcessStopOptions } from "./types/ProcessStopOptions";
-import { VoidFn } from "../../shared/types/Utility";
+import { VoidFn } from "@/shared/types/Utility";
 
 export class IPCChildProcessCommunication {
   private childProcess: ReturnType<typeof spawn>;

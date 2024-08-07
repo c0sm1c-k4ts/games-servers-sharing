@@ -1,6 +1,6 @@
 import express, { Express } from "express";
 import path from "path";
-import { WebViewServerAddress } from "../utils/main-process/classes/WebViewServerAddress";
+import { WebViewServerAddress } from "@/main-process/utils";
 
 export class WebViewServer {
   public addressInfo: WebViewServerAddress | null = null;

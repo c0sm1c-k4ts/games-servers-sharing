@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
-import { WebViewServer } from "./express";
+import { WebViewServer } from "@/main-process/express";
 
 if (require("electron-squirrel-startup")) {
   app.quit();
@@ -26,6 +26,8 @@ class ElectronApp {
         electronApp.prepare();
       }
     });
+
+    return electronApp;
   }
 
   private prepare = () => {
@@ -83,4 +85,4 @@ class ElectronApp {
   };
 }
 
-ElectronApp.init();
+export const electronApp = ElectronApp.init();

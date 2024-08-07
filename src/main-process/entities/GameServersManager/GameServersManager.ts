@@ -1,6 +1,6 @@
 import { IGameServerConfiguration, RunningServer } from "./types/GameServer";
 import { RunnableGameServer } from "../RunnableGameServer/RunnableGameServer";
-import { ObservableCollection } from "../../utils/shared/observable";
+import { ObservableCollection } from "@/shared/utils/observable";
 
 class GameServersManager extends ObservableCollection<
   Map<string, RunningServer>
