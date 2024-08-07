@@ -26,6 +26,8 @@ class ElectronApp {
         electronApp.prepare();
       }
     });
+
+    return electronApp;
   }
 
   private prepare = () => {
@@ -83,4 +85,4 @@ class ElectronApp {
   };
 }
 
-ElectronApp.init();
+export const electronApp = ElectronApp.init();
